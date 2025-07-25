@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc0miq57eduod"]
+
+[ext_resource type="Script" uid="uid://c4ctbdfsjgwoc" path="res://Scripts/interactable.gd" id="1_jhneu"]
+[ext_resource type="Texture2D" uid="uid://rfewcr12ufk7" path="res://Assets/interactable/wall-panel.png" id="2_v7xnw"]
+
+[node name="WallPanel" type="Area2D"]
+script = ExtResource("1_jhneu")
+sprite_image = ExtResource("2_v7xnw")
+metadata/_custom_type_script = "uid://c4ctbdfsjgwoc"
