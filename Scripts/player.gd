@@ -11,20 +11,41 @@ const TILE: Vector2 = Vector2(16,16)
 @onready var down_interact: RayCast2D = $DownInteract
 @onready var left_interact: RayCast2D = $LeftInteract
 @onready var right_interact: RayCast2D = $RightInteract
+@onready var interaction_sprite: Sprite2D = $InteractionPrompt/Path2D/PathFollow2D/Sprite2D
+@onready var path: PathFollow2D = $InteractionPrompt/Path2D/PathFollow2D
 
-var sprite_tween: Tween
+@export var interactions: Array[RayCast2D]
+
+
 enum PrevDirection{
 	DOWN,
 	UP,
 	LEFT,
 	RIGHT
 } 
+var sprite_tween: Tween
 var prev_step: PrevDirection
+var tween_running: bool = false
+
+var interactable: Interactable
 
 
 func _physics_process(delta: float) -> void:
+	_display_interaction()
 	if sprite_tween and sprite_tween.is_running():
+		tween_running = true
 		return
+	else:
+		tween_running = false
+	
+	_handle_movement()
+
+	if Input.is_action_just_pressed("interact"):
+		_handle_interaction()
+
+
+# deal with movement and play animations
+func _handle_movement():
 	
 	if Input.is_action_pressed("move_up") and !up.is_colliding():
 		sprite.play("move_up")
@@ -42,20 +63,7 @@ func _physics_process(delta: float) -> void:
 		sprite.play("move_right")
 		_move(Vector2(1, 0))
 		prev_step = PrevDirection.RIGHT
-	
-	elif Input.is_action_just_pressed("interact") and (
-	up_interact.get_collider() is Interactable):
-		up_interact.get_collider().interact()
-	elif Input.is_action_just_pressed("interact") and (
-	down_interact.get_collider() is Interactable):
-		down_interact.get_collider().interact()
-	elif Input.is_action_just_pressed("interact") and (
-	left_interact.get_collider() is Interactable):
-		left_interact.get_collider().interact()
-	elif Input.is_action_just_pressed("interact") and (
-	right_interact.get_collider() is Interactable):
-		right_interact.get_collider().interact()
-	
+
 	else:
 		match prev_step:
 			0:
@@ -67,10 +75,33 @@ func _physics_process(delta: float) -> void:
 			3:
 				sprite.play("idle_right")
 
+
+# handles interactions when "interact" key pressed
+func _handle_interaction() -> void:
+
+	for ray in interactions:
+		if interactable:
+			interactable.interact(self)
+			break
+
+
+func _display_interaction():
+	for ray in interactions:
+		if !ray.is_colliding():
+			interactable = null
+			interaction_sprite.visible = false
+		elif ray.get_collider() is Interactable:
+			interactable = ray.get_collider()
+			break
+	if interactable:
+		interaction_sprite.global_position = interactable.global_position + Vector2(8, -24)
+		interaction_sprite.visible = true
+
+
 func _move(direction: Vector2):
+
 	global_position += direction * TILE
 	sprite.global_position -= direction * TILE
-
 
 	if sprite_tween:
 		sprite_tween.kill()
@@ -79,5 +110,5 @@ func _move(direction: Vector2):
 	sprite_tween.tween_property(sprite,"global_position", global_position, 0.62).set_trans(Tween.TRANS_SINE)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	pass
+func change_color(color: Color):
+	sprite.modulate = color

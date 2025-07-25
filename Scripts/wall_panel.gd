@@ -3,5 +3,5 @@ extends Interactable
 @export var connection: Activateable
 
 
-func interact():
+func interact(interactor = null):
 	connection.activate()
