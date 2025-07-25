@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc0miq57eduod"]
+[gd_scene load_steps=4 format=3 uid="uid://bc0miq57eduod"]
 
-[ext_resource type="Script" uid="uid://c4ctbdfsjgwoc" path="res://Scripts/interactable.gd" id="1_jhneu"]
-[ext_resource type="Texture2D" uid="uid://rfewcr12ufk7" path="res://Assets/interactable/wall-panel.png" id="2_v7xnw"]
+[ext_resource type="Script" uid="uid://boc4drunbt41k" path="res://Scripts/wall_panel.gd" id="1_jhneu"]
+[ext_resource type="Texture2D" uid="uid://rfewcr12ufk7" path="res://Assets/world-objects/wall-panel.png" id="2_v7xnw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhneu"]
+size = Vector2(16, 16)
 
 [node name="WallPanel" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_jhneu")
-sprite_image = ExtResource("2_v7xnw")
 metadata/_custom_type_script = "uid://c4ctbdfsjgwoc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -8)
+shape = SubResource("RectangleShape2D_jhneu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -8)
+texture = ExtResource("2_v7xnw")

@@ -1,0 +1,136 @@
+[gd_scene load_steps=13 format=3 uid="uid://im4be5cegpkl"]
+
+[ext_resource type="Script" uid="uid://ma7gx2vi1h85" path="res://Scripts/door.gd" id="1_82h2a"]
+[ext_resource type="Texture2D" uid="uid://dxypyv4dap6ov" path="res://Assets/world-objects/door_anim.png" id="2_epv1s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj2pw"]
+atlas = ExtResource("2_epv1s")
+region = Rect2(8, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_burcv"]
+atlas = ExtResource("2_epv1s")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a43ba"]
+atlas = ExtResource("2_epv1s")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab4ky"]
+atlas = ExtResource("2_epv1s")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8c32u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj2pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_burcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a43ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab4ky")
+}],
+"loop": false,
+"name": &"door_close",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab4ky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a43ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_burcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj2pw")
+}],
+"loop": false,
+"name": &"door_open",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0e35"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_ab4ky"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_a43ba"]
+resource_name = "door_close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, -16), Vector2(8, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_fahql"]
+resource_name = "door_open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, -16), Vector2(-8, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a43ba"]
+_data = {
+&"RESET": SubResource("Animation_ab4ky"),
+&"door_close": SubResource("Animation_a43ba"),
+&"door_open": SubResource("Animation_fahql")
+}
+
+[node name="DoorL" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_82h2a")
+metadata/_custom_type_script = "uid://cqey0qp7nju0u"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -16)
+sprite_frames = SubResource("SpriteFrames_8c32u")
+animation = &"door_close"
+autoplay = "door_close"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -16)
+shape = SubResource("RectangleShape2D_p0e35")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a43ba")
+}

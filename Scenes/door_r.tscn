@@ -1,0 +1,150 @@
+[gd_scene load_steps=17 format=3 uid="uid://4tnhkqt4w04i"]
+
+[ext_resource type="Script" uid="uid://ma7gx2vi1h85" path="res://Scripts/door.gd" id="1_3fcpu"]
+[ext_resource type="Texture2D" uid="uid://dxypyv4dap6ov" path="res://Assets/world-objects/door_anim.png" id="2_mvilg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fcpu"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 96, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvilg"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1h7i"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myw8b"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7cvn"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htsm6"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdstn"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2awm3"]
+atlas = ExtResource("2_mvilg")
+region = Rect2(16, 96, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8f5j4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fcpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvilg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1h7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myw8b")
+}],
+"loop": false,
+"name": &"door_close",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7cvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htsm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdstn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2awm3")
+}],
+"loop": false,
+"name": &"door_open",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k0vx"]
+size = Vector2(16, 32)
+
+[sub_resource type="Animation" id="Animation_ab4ky"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_a43ba"]
+resource_name = "door_close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(24, -16), Vector2(8, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_fahql"]
+resource_name = "door_open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8, -16), Vector2(24, -16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a43ba"]
+_data = {
+&"RESET": SubResource("Animation_ab4ky"),
+&"door_close": SubResource("Animation_a43ba"),
+&"door_open": SubResource("Animation_fahql")
+}
+
+[node name="DoorR" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_3fcpu")
+metadata/_custom_type_script = "uid://cqey0qp7nju0u"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, -16)
+sprite_frames = SubResource("SpriteFrames_8f5j4")
+animation = &"door_open"
+autoplay = "door_close"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, -16)
+shape = SubResource("RectangleShape2D_7k0vx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a43ba")
+}

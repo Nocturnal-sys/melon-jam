@@ -5,6 +5,11 @@ extends Area2D
 
 @export var sprite_image: CompressedTexture2D
 
+
 func _ready() -> void:
 	sprite.texture = sprite_image
 	collision.shape = RectangleShape2D.new()
+
+
+func interact():
+	print("Interacted!")

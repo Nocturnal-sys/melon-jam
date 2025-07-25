@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rfewcr12ufk7"
-path="res://.godot/imported/wall-panel.png-c0b3eb7941b5a5770b817da91759c1cf.ctex"
+uid="uid://dxypyv4dap6ov"
+path="res://.godot/imported/door_anim.png-0ecbff50e414ac08acc774602f5c1732.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/interactable/wall-panel.png"
-dest_files=["res://.godot/imported/wall-panel.png-c0b3eb7941b5a5770b817da91759c1cf.ctex"]
+source_file="res://Assets/world-objects/door_anim.png"
+dest_files=["res://.godot/imported/door_anim.png-0ecbff50e414ac08acc774602f5c1732.ctex"]
 
 [params]
 
