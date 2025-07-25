@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const TILE: Vector2 = Vector2(16,16)
@@ -15,6 +16,8 @@ const TILE: Vector2 = Vector2(16,16)
 @onready var path: PathFollow2D = $InteractionPrompt/Path2D/PathFollow2D
 
 @export var interactions: Array[RayCast2D]
+@export var text_box: TextBox
+@export var text_box_active: bool = false
 
 
 enum PrevDirection{
@@ -37,7 +40,6 @@ func _physics_process(delta: float) -> void:
 		return
 	else:
 		tween_running = false
-	
 	_handle_movement()
 
 	if Input.is_action_just_pressed("interact"):
@@ -46,6 +48,9 @@ func _physics_process(delta: float) -> void:
 
 # deal with movement and play animations
 func _handle_movement():
+	
+	if text_box_active:
+		return
 	
 	if Input.is_action_pressed("move_up") and !up.is_colliding():
 		sprite.play("move_up")
@@ -78,7 +83,8 @@ func _handle_movement():
 
 # handles interactions when "interact" key pressed
 func _handle_interaction() -> void:
-
+	if text_box_active:
+		return
 	for ray in interactions:
 		if interactable:
 			interactable.interact(self)
@@ -89,13 +95,13 @@ func _display_interaction():
 	for ray in interactions:
 		if !ray.is_colliding():
 			interactable = null
-			interaction_sprite.visible = false
+			interaction_sprite.hide()
 		elif ray.get_collider() is Interactable:
 			interactable = ray.get_collider()
 			break
 	if interactable:
-		interaction_sprite.global_position = interactable.global_position + Vector2(8, -24)
-		interaction_sprite.visible = true
+		interaction_sprite.global_position = interactable.global_position + Vector2(0, -24)
+		interaction_sprite.show()
 
 
 func _move(direction: Vector2):
@@ -112,3 +118,7 @@ func _move(direction: Vector2):
 
 func change_color(color: Color):
 	sprite.modulate = color
+
+
+func _on_text_box_finished() -> void:
+	text_box_active = false

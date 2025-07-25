@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b03jbbkhrbb31"]
+[gd_scene load_steps=18 format=4 uid="uid://b03jbbkhrbb31"]
 
 [ext_resource type="Texture2D" uid="uid://b3fa8fdh5obdl" path="res://Assets/tileset.png" id="1_vly50"]
 [ext_resource type="PackedScene" uid="uid://d0gyrtrtkg6a3" path="res://Scenes/player.tscn" id="2_c5erv"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://d35hvriebe5ah" path="res://Scripts/activateable_container.gd" id="6_4iphx"]
 [ext_resource type="PackedScene" uid="uid://im4be5cegpkl" path="res://Scenes/door_l.tscn" id="7_jgkgd"]
 [ext_resource type="PackedScene" uid="uid://4tnhkqt4w04i" path="res://Scenes/door_r.tscn" id="8_bs12r"]
+[ext_resource type="PackedScene" uid="uid://c1tnkpyj310a1" path="res://Scenes/tube.tscn" id="8_jgkgd"]
 [ext_resource type="PackedScene" uid="uid://b8cj7031aa3cf" path="res://Scenes/vent.tscn" id="9_jgkgd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k5f4k"]
@@ -4845,14 +4846,18 @@ tile_map_data = PackedByteArray("AAAQAAgAAAAIAAoAAAARAAgAAAAIAAoAAAASAAgAAAAIAAo
 tile_set = SubResource("TileSet_4iphx")
 
 [node name="Objects" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAWAAwAAAAQABAAAAAWAAsAAAAcABkAAAAXAAsAAAAdABkAAAAXAAwAAAARABAAAAAWAA0AAAAQABEAAAAXAA0AAAARABEAAAATAAgAAAASABYAAAATAAkAAAASABcAAAAUAAgAAAATABYAAAAUAAkAAAATABcAAAAWAAgAAAAQABYAAAAWAAkAAAAQABcAAAAXAAgAAAARABYAAAAXAAkAAAARABcAAAAZAAgAAAAVABYAAAAZAAkAAAAVABcAAAAaAAgAAAAWABYAAAAaAAkAAAAWABcAAAA=")
+tile_map_data = PackedByteArray("AAATAAgAAAASABYAAAATAAkAAAASABcAAAAUAAgAAAATABYAAAAUAAkAAAATABcAAAAWAAgAAAAQABYAAAAWAAkAAAAQABcAAAAXAAgAAAARABYAAAAXAAkAAAARABcAAAAZAAgAAAAVABYAAAAZAAkAAAAVABcAAAAaAAgAAAAWABYAAAAaAAkAAAAWABcAAAAgAAgAAAAaAAIAAAAgAAkAAAAaAAMAAAAhAAgAAAAbAAIAAAAhAAkAAAAbAAMAAAAcAA0AAAAZABYAAAAcAA4AAAAZABcAAAAdAA0AAAAaABYAAAAdAA4AAAAaABcAAAAQAA4AAAAYABQAAAAQAA8AAAAYABUAAAAQAAwAAAAXABIAAAAQAA0AAAAXABMAAAA=")
 tile_set = SubResource("TileSet_bs12r")
+
+[node name="Player" parent="." instance=ExtResource("2_c5erv")]
+position = Vector2(392, 184)
 
 [node name="WorldObjects" type="Node2D" parent="."]
 
 [node name="WallPanel" parent="WorldObjects" node_paths=PackedStringArray("connection") instance=ExtResource("4_lyd6k")]
-position = Vector2(448, 144)
+position = Vector2(456, 136)
 connection = NodePath("../Door1")
+textColor = Color(0, 1, 0, 1)
 
 [node name="Door1" type="StaticBody2D" parent="WorldObjects" node_paths=PackedStringArray("children")]
 script = ExtResource("6_4iphx")
@@ -4868,17 +4873,24 @@ position = Vector2(496, 144)
 [node name="Vent" parent="WorldObjects" instance=ExtResource("9_jgkgd")]
 position = Vector2(536, 200)
 rotation = 1.57079
+textColor = Color(0, 1, 0, 1)
 
-[node name="Player" parent="." instance=ExtResource("2_c5erv")]
-position = Vector2(392, 184)
+[node name="AirTube" parent="WorldObjects" instance=ExtResource("8_jgkgd")]
+position = Vector2(496, 16)
+textColor = Color(0, 1, 0, 1)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(-32, 16)
-scale = Vector2(839.306, -167.479)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-position_smoothing_speed = 4.0
+[node name="InitialTube" parent="WorldObjects" instance=ExtResource("8_jgkgd")]
+position = Vector2(368, 184)
+lines = Array[String](["LIVING COMPOUND|VOLATILITY HIGH", "CONTAINTMENT STATUS:|UNCONTAINED"])
+textColor = Color(1, 0, 0, 1)
+
+[node name="Top" parent="WorldObjects/InitialTube" index="0"]
+modulate = Color(0, 1, 0, 0.784314)
+
+[node name="PointLight2D" parent="WorldObjects/InitialTube/Top" index="0"]
+visible = false
 
 [node name="ObjectsForeground" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAWAAoAAAAcABgAAAAXAAoAAAAdABgAAAA=")
 tile_set = SubResource("TileSet_bs12r")
+
+[editable path="WorldObjects/InitialTube"]

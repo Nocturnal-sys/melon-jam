@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqdqeew7m0a8h"]
+
+[ext_resource type="Texture2D" uid="uid://baxkbmquua2w4" path="res://Assets/world-objects/computer.png" id="1_0kxgl"]
+[ext_resource type="Script" uid="uid://nyrfpqd4bmbr" path="res://Scripts/text_box.gd" id="1_ot2p7"]
+[ext_resource type="FontFile" uid="uid://c7i2ga12mhy2n" path="res://Assets/Fonts/CourierPixel.ttf" id="2_0kxgl"]
+[ext_resource type="FontFile" uid="uid://0qulra26bhc" path="res://Assets/Fonts/PixelOperator8.ttf" id="4_w6krc"]
+
+[node name="TextBox" type="MarginContainer"]
+offset_right = 224.0
+offset_bottom = 48.0
+script = ExtResource("1_ot2p7")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_0kxgl")
+patch_margin_left = 4
+patch_margin_top = 5
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_0kxgl")
+theme_override_font_sizes/font_size = 16
+text = "Placeholder text"
+autowrap_mode = 2
+
+[node name="NextLine" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(15, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("4_w6krc")
+theme_override_font_sizes/font_size = 8
+text = "..."
