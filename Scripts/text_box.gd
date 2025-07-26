@@ -25,7 +25,6 @@ signal finished()
 
 func _ready() -> void:
 	_change_state(State.READY)
-	print("starting state: READY")
 	hide_text_box()
 
 
@@ -96,12 +95,12 @@ func change_text_color(color: Color):
 # changes to a new state
 func _change_state(next_state: State):
 	current_state = next_state
-	match current_state:
-		State.READY:
-			print("changing state to READY")
-		State.READING:
-			print("changing state to READING")
-		State.LINE_FINISHED:
-			print("changing state to LINE_FINISHED")
-		State.FINISHED:
-			print("changing state to FINISHED")
+	#match current_state:
+		#State.READY:
+			#print("changing state to READY")
+		#State.READING:
+			#print("changing state to READING")
+		#State.LINE_FINISHED:
+			#print("changing state to LINE_FINISHED")
+		#State.FINISHED:
+			#print("changing state to FINISHED")

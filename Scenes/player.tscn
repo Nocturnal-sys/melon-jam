@@ -324,7 +324,7 @@ interactions = [NodePath("UpInteract"), NodePath("DownInteract"), NodePath("Left
 text_box = NodePath("TextBox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 1, 0, 0.784314)
+modulate = Color(0, 1, 0, 0.8)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
 animation = &"idle_down"
 autoplay = "idle_down"

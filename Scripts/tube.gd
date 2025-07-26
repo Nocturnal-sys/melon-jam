@@ -51,3 +51,4 @@ func _bestow_power():
 	await light_tween.finished
 	PlayerManager.bestow_power(tube_color)
 	light.hide()
+	power_bestowed = true

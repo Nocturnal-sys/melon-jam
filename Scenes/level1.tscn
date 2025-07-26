@@ -4873,12 +4873,13 @@ position = Vector2(496, 144)
 [node name="Vent" parent="WorldObjects" instance=ExtResource("9_jgkgd")]
 position = Vector2(536, 200)
 rotation = 1.57079
-textColor = Color(0, 1, 0, 1)
+denied_lines = Array[String](["This vent has a fine filter", "Your particles are too dense"])
+textColor = Color(1, 1, 1, 1)
 
 [node name="AirTube" parent="WorldObjects" instance=ExtResource("8_jgkgd")]
 position = Vector2(496, 16)
 used_lines = Array[String](["BREEZE COMPOUND RELEASED"])
-tube_color = Color(1, 1, 1, 0.784314)
+tube_color = Color(1, 1, 1, 0.8)
 lines = Array[String](["BREEZE COMPOUND", "KEEP AWAY FROM LIVING COMPOUND"])
 textColor = Color(0, 1, 0, 1)
 
@@ -4886,7 +4887,7 @@ textColor = Color(0, 1, 0, 1)
 position = Vector2(368, 184)
 used = true
 used_lines = Array[String](["LIVING COMPOUND|VOLATILITY: HIGH", "CONTAINTMENT STATUS:|UNCONTAINED"])
-tube_color = Color(0, 1, 0, 0.784314)
+tube_color = Color(0, 1, 0, 0.8)
 textColor = Color(1, 0, 0, 1)
 
 [node name="Top" parent="WorldObjects/InitialTube" index="0"]
