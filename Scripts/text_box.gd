@@ -31,13 +31,14 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
-		if current_state == State.READING:
-			text.visible_ratio = 1
-		elif current_state == State.LINE_FINISHED:
-			add_line(_format_line(dialogueLines[line_index]))
-		elif current_state == State.FINISHED:
-			hide_text_box()
-			finished.emit()
+		match current_state:
+			State.READING:
+				text.visible_ratio = 1
+			State.LINE_FINISHED:
+				add_line(_format_line(dialogueLines[line_index]))
+			State.FINISHED:
+				hide_text_box()
+				finished.emit()
 	pass
 
 
@@ -73,13 +74,14 @@ func _format_line(line: String):
 # adds a line to the text box and displays it using a tween
 func add_line(line: String):
 	text.visible_ratio = 0
+	next_line.text = ""
 	_change_state(State.READING)
 	text.text = line
 	typing_tween = create_tween()
 	typing_tween.tween_property(text,"visible_ratio", 1, len(line)*CHAR_READ_RATE)
 	await typing_tween.finished
 	_change_state(State.LINE_FINISHED)
-	next_line.text = "..."
+	next_line.text = "<"
 	line_index += 1
 	if line_index == len(dialogueLines):
 		_change_state(State.FINISHED)

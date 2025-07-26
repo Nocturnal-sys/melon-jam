@@ -406,9 +406,10 @@ position = Vector2(24, 0)
 texture = ExtResource("3_vgqql")
 
 [node name="TextBox" parent="." instance=ExtResource("4_vgqql")]
-offset_left = -96.0
+z_index = 1024
+offset_left = -104.0
 offset_top = 24.0
-offset_right = 99.0
+offset_right = 104.0
 offset_bottom = 72.0
 
 [node name="Camera2D" type="Camera2D" parent="."]

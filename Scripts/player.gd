@@ -32,6 +32,11 @@ var tween_running: bool = false
 
 var interactable: Interactable
 
+signal text_finished()
+
+func _ready() -> void:
+	PlayerManager.add_player(self)
+
 
 func _physics_process(delta: float) -> void:
 	_display_interaction()
@@ -44,6 +49,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("interact"):
 		_handle_interaction()
+
+	if Input.is_action_just_pressed("change_color"):
+		PlayerManager.cycle_color()
 
 
 # deal with movement and play animations
@@ -120,5 +128,10 @@ func change_color(color: Color):
 	sprite.modulate = color
 
 
+func get_color():
+	return sprite.modulate
+
+
 func _on_text_box_finished() -> void:
 	text_box_active = false
+	text_finished.emit(interactable)

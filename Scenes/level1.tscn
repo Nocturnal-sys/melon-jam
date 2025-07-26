@@ -4877,20 +4877,25 @@ textColor = Color(0, 1, 0, 1)
 
 [node name="AirTube" parent="WorldObjects" instance=ExtResource("8_jgkgd")]
 position = Vector2(496, 16)
+used_lines = Array[String](["BREEZE COMPOUND RELEASED"])
+tube_color = Color(1, 1, 1, 0.784314)
+lines = Array[String](["BREEZE COMPOUND", "KEEP AWAY FROM LIVING COMPOUND"])
 textColor = Color(0, 1, 0, 1)
 
 [node name="InitialTube" parent="WorldObjects" instance=ExtResource("8_jgkgd")]
 position = Vector2(368, 184)
-lines = Array[String](["LIVING COMPOUND|VOLATILITY HIGH", "CONTAINTMENT STATUS:|UNCONTAINED"])
+used = true
+used_lines = Array[String](["LIVING COMPOUND|VOLATILITY: HIGH", "CONTAINTMENT STATUS:|UNCONTAINED"])
+tube_color = Color(0, 1, 0, 0.784314)
 textColor = Color(1, 0, 0, 1)
 
 [node name="Top" parent="WorldObjects/InitialTube" index="0"]
 modulate = Color(0, 1, 0, 0.784314)
 
-[node name="PointLight2D" parent="WorldObjects/InitialTube/Top" index="0"]
-visible = false
-
 [node name="ObjectsForeground" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAWAAwAAAAQABYAAAAWAA0AAAAQABcAAAAXAAwAAAARABYAAAAXAA0AAAARABcAAAA=")
 tile_set = SubResource("TileSet_bs12r")
+
+[connection signal="text_finished" from="Player" to="WorldObjects/AirTube" method="_on_text_finished"]
 
 [editable path="WorldObjects/InitialTube"]

@@ -26,7 +26,7 @@ metadata/_custom_type_script = "uid://c4ctbdfsjgwoc"
 modulate = Color(1, 1, 1, 0.784314)
 texture = ExtResource("2_adwee")
 
-[node name="PointLight2D" type="PointLight2D" parent="Top"]
+[node name="Light" type="PointLight2D" parent="Top"]
 texture = SubResource("GradientTexture2D_slq13")
 
 [node name="Bottom" type="Sprite2D" parent="."]
