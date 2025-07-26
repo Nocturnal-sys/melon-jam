@@ -235,7 +235,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bi64h")
 }],
-"loop": false,
+"loop": true,
 "name": &"move_down",
 "speed": 8.0
 }, {
@@ -255,7 +255,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y6uwr")
 }],
-"loop": false,
+"loop": true,
 "name": &"move_left",
 "speed": 8.0
 }, {
@@ -275,7 +275,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_36dho")
 }],
-"loop": false,
+"loop": true,
 "name": &"move_right",
 "speed": 8.0
 }, {
@@ -295,7 +295,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qpa8y")
 }],
-"loop": false,
+"loop": true,
 "name": &"move_up",
 "speed": 8.0
 }]
@@ -394,6 +394,7 @@ hit_from_inside = true
 collide_with_areas = true
 
 [node name="InteractionPrompt" type="Node2D" parent="."]
+z_index = 1024
 
 [node name="Path2D" type="Path2D" parent="InteractionPrompt"]
 curve = SubResource("Curve2D_cvnsp")
@@ -402,10 +403,12 @@ curve = SubResource("Curve2D_cvnsp")
 rotates = false
 
 [node name="Sprite2D" type="Sprite2D" parent="InteractionPrompt/Path2D/PathFollow2D"]
+visible = false
 position = Vector2(24, 0)
 texture = ExtResource("3_vgqql")
 
 [node name="TextBox" parent="." instance=ExtResource("4_vgqql")]
+light_mask = 0
 z_index = 1024
 offset_left = -104.0
 offset_top = 24.0

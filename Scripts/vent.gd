@@ -7,6 +7,8 @@ func interact(interactor: Player):
 	if textColor:
 		interactor.text_box.change_text_color(textColor)
 	if interactor.get_color() != Color(1,1,1,0.8):
+		if !denied_lines:
+			return
 		interactor.text_box_active = true
 		interactor.text_box.dialogueLines = denied_lines
 		interactor.text_box.show_text_box()

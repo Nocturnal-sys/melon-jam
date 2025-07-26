@@ -19,6 +19,7 @@ const TILE: Vector2 = Vector2(16,16)
 @export var text_box: TextBox
 @export var text_box_active: bool = false
 
+var speed_factor: int = 1
 
 enum PrevDirection{
 	DOWN,
@@ -121,11 +122,17 @@ func _move(direction: Vector2):
 		sprite_tween.kill()
 	sprite_tween = create_tween()
 	sprite_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	sprite_tween.tween_property(sprite,"global_position", global_position, 0.62).set_trans(Tween.TRANS_SINE)
+	sprite_tween.tween_property(sprite,"global_position", global_position, 0.4 / speed_factor).set_trans(Tween.TRANS_SINE)
 
 
 func change_color(color: Color):
+	print(color)
 	sprite.modulate = color
+	if color == Color(0.0,0.8,0.6,0.8):
+		print("speed!")
+		speed_factor = 3.5
+	else:
+		speed_factor = 1
 
 
 func get_color():

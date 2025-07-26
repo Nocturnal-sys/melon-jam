@@ -33,17 +33,16 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("2_0kxgl")
 theme_override_font_sizes/font_size = 16
 text = "Placeholder text"
 autowrap_mode = 2
 
 [node name="NextLine" type="Label" parent="MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(15, 8)
+custom_minimum_size = Vector2(6, 8)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("4_w6krc")
 theme_override_font_sizes/font_size = 8
-text = "..."
+text = "<"

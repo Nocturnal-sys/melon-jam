@@ -32,7 +32,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		match current_state:
 			State.READING:
-				text.visible_ratio = 1
+				pass
+				#text.visible_ratio = 1
 			State.LINE_FINISHED:
 				add_line(_format_line(dialogueLines[line_index]))
 			State.FINISHED:
@@ -48,7 +49,6 @@ func show_text_box():
 	if len(dialogueLines) > 0:
 		add_line(_format_line(dialogueLines[line_index]))
 		show()
-		current_state = State.READY
 
 
 # resets and hides the text box
