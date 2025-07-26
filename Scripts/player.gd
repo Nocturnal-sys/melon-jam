@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const TILE: Vector2 = Vector2(16,16)
 
+@onready var light: PointLight2D = $AnimatedSprite2D/PointLight2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var up: RayCast2D = $Up
 @onready var down: RayCast2D = $Down
@@ -19,7 +20,7 @@ const TILE: Vector2 = Vector2(16,16)
 @export var text_box: TextBox
 @export var text_box_active: bool = false
 
-var speed_factor: int = 1
+var speed_factor: float = 0.9
 
 enum PrevDirection{
 	DOWN,
@@ -37,6 +38,7 @@ signal text_finished()
 
 func _ready() -> void:
 	PlayerManager.add_player(self)
+	light.color = get_color()
 
 
 func _physics_process(delta: float) -> void:
@@ -128,11 +130,12 @@ func _move(direction: Vector2):
 func change_color(color: Color):
 	print(color)
 	sprite.modulate = color
+	light.color = color
 	if color == Color(0.0,0.8,0.6,0.8):
 		print("speed!")
 		speed_factor = 3.5
 	else:
-		speed_factor = 1
+		speed_factor = 0.9
 
 
 func get_color():
@@ -142,3 +145,9 @@ func get_color():
 func _on_text_box_finished() -> void:
 	text_box_active = false
 	text_finished.emit(interactable)
+
+
+func kill(pos: Vector2):
+	if tween_running:
+		await sprite_tween.finished
+	global_position = pos

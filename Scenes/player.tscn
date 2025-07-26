@@ -308,6 +308,7 @@ colors = PackedColorArray(0.948052, 0.948052, 0.948052, 1, 1, 1, 1, 1, 0, 0, 0, 
 gradient = SubResource("Gradient_6t5aa")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.858974, 0.166667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(8, 8)
@@ -330,7 +331,7 @@ animation = &"idle_down"
 autoplay = "idle_down"
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
-visible = false
+energy = 0.5
 range_item_cull_mask = 31
 texture = SubResource("GradientTexture2D_vgqql")
 

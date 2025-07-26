@@ -1,0 +1,162 @@
+[gd_scene load_steps=16 format=3 uid="uid://dea2xoyv24ihx"]
+
+[ext_resource type="Script" uid="uid://ducn5gte22pwv" path="res://Scripts/unstable_platform.gd" id="1_xt258"]
+[ext_resource type="Texture2D" uid="uid://in1121upbv0i" path="res://Assets/world-objects/unstable_platform_sheet.png" id="2_7xivo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt258"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj6s2"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hq50"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ul6k"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7702w"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_verju"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km2wy"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8hna"]
+atlas = ExtResource("2_7xivo")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u28eq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt258")
+}],
+"loop": true,
+"name": &"RESET",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj6s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hq50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ul6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7702w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_verju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km2wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8hna")
+}],
+"loop": false,
+"name": &"retract_platform",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nnp3s"]
+size = Vector2(48, 0)
+
+[sub_resource type="Animation" id="Animation_xt258"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_xwfma"]
+resource_name = "retract_floor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(48, 0), Vector2(48, 48)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 24), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rgptx"]
+_data = {
+&"RESET": SubResource("Animation_xt258"),
+&"retract_floor": SubResource("Animation_xwfma")
+}
+
+[node name="UnstablePlatform" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xt258")
+metadata/_custom_type_script = "uid://cqey0qp7nju0u"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_u28eq")
+animation = &"RESET"
+
+[node name="DeathZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_nnp3s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DeathZone"]
+libraries = {
+&"": SubResource("AnimationLibrary_rgptx")
+}
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="animation_finished" from="DeathZone/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

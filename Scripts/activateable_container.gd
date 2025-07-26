@@ -3,6 +3,6 @@ extends Activateable
 
 @export var children: Array[Activateable]
 
-func activate():
+func activate(trigger):
 	for child in children:
-		child.activate()
+		child.activate(null)

@@ -1,9 +1,9 @@
 extends Activateable
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
 
 var open: bool = false
-
 
 func activate(trigger):
 	if sprite.is_playing():

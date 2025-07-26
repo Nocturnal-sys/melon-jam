@@ -4,4 +4,4 @@ extends Interactable
 
 
 func interact(interactor = null):
-	connection.activate()
+	connection.activate(null)
