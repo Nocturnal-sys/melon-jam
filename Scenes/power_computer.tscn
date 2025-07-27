@@ -1,0 +1,111 @@
+[gd_scene load_steps=15 format=3 uid="uid://b87v34quomb7w"]
+
+[ext_resource type="Script" uid="uid://drxwf2fwrigb7" path="res://Scripts/power_computer.gd" id="1_yxfl5"]
+[ext_resource type="Texture2D" uid="uid://bojnu0u0op2i2" path="res://Assets/FDR_Laboratory_Tiles_Animated.png" id="2_lvik5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot6e8"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(224, 688, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6npa"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(224, 720, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2n8q"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(224, 752, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryxig"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(224, 656, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f63uw"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(240, 752, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb6lm"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(240, 688, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i14gh"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(240, 656, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0xx1"]
+atlas = ExtResource("2_lvik5")
+region = Rect2(240, 720, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1lbj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot6e8")
+}],
+"loop": false,
+"name": &"Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6npa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2n8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryxig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f63uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb6lm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i14gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0xx1")
+}],
+"loop": true,
+"name": &"On",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yxfl5"]
+size = Vector2(16, 20)
+
+[sub_resource type="Gradient" id="Gradient_xhvna"]
+offsets = PackedFloat32Array(0, 0.688525)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pygx0"]
+gradient = SubResource("Gradient_xhvna")
+fill = 1
+fill_from = Vector2(0.482906, 0.478632)
+
+[node name="PowerComputer" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_yxfl5")
+textColor = Color(0, 1, 0, 1)
+metadata/_custom_type_script = "uid://c4ctbdfsjgwoc"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
+sprite_frames = SubResource("SpriteFrames_x1lbj")
+animation = &"On"
+autoplay = "Off"
+frame_progress = 0.971276
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_yxfl5")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -4)
+color = Color(0, 0.8, 0.6, 0.8)
+energy = 0.5
+texture = SubResource("GradientTexture2D_pygx0")
+texture_scale = 0.6

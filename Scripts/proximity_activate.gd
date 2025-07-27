@@ -10,7 +10,7 @@ func _ready() -> void:
 
 func activate(trigger):
 	for child in children:
-		child.activate(null)
+		child.activate(self)
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

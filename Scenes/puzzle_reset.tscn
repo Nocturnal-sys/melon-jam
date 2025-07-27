@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ow0jy4t715dc"]
+
+[ext_resource type="Script" uid="uid://ceiyu8dnnsf50" path="res://Scripts/puzzle_reset.gd" id="1_rfwee"]
+
+[node name="PuzzleReset" type="StaticBody2D"]
+script = ExtResource("1_rfwee")
+metadata/_custom_type_script = "uid://cqey0qp7nju0u"

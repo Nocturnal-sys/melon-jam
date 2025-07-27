@@ -1,15 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwuachu6ipy7t"]
 
-[ext_resource type="Script" uid="uid://nqhl5606j60s" path="res://Scripts/Classes/pushable.gd" id="1_cfivt"]
 [ext_resource type="Texture2D" uid="uid://c7c2072d10hrw" path="res://Assets/world-objects/large_pushable_crate.png" id="2_cfivt"]
+
+[sub_resource type="GDScript" id="GDScript_a5wfr"]
+script/source = "extends Pushable
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cfivt"]
 size = Vector2(16, 16)
 
 [node name="CrateLarge" type="Area2D"]
 collision_layer = 4
-script = ExtResource("1_cfivt")
+script = SubResource("GDScript_a5wfr")
 denied_lines = Array[String](["You might be able to move this", "If only you were a little stronger..."])
+disabled_lines = Array[String](["It's stuck fast on the button"])
+textColor = Color(1, 0.4, 0, 1)
 metadata/_custom_type_script = "uid://nqhl5606j60s"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

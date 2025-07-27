@@ -322,10 +322,10 @@ point_count = 2
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("interactions", "text_box")]
 script = ExtResource("1_onrkg")
 interactions = [NodePath("UpInteract"), NodePath("DownInteract"), NodePath("LeftInteract"), NodePath("RightInteract")]
-text_box = NodePath("TextBox")
+text_box = NodePath("Camera2D/CanvasLayer/TextBox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0, 1, 0, 0.8)
+modulate = Color(1, 0.4, 0, 0.8)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
 animation = &"idle_down"
 autoplay = "idle_down"
@@ -408,20 +408,26 @@ visible = false
 position = Vector2(24, 0)
 texture = ExtResource("3_vgqql")
 
-[node name="TextBox" parent="." instance=ExtResource("4_vgqql")]
-light_mask = 0
-z_index = 1024
-offset_left = -104.0
-offset_top = 24.0
-offset_right = 104.0
-offset_bottom = 72.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
+light_mask = 0
 position = Vector2(0, 1.90735e-06)
 scale = Vector2(839.306, -167.479)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+offset = Vector2(640, 400)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 640, 400)
+
+[node name="TextBox" parent="Camera2D/CanvasLayer" instance=ExtResource("4_vgqql")]
+z_index = 4096
+z_as_relative = true
+offset_left = -104.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 72.0
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="finished" from="TextBox" to="." method="_on_text_box_finished"]
+[connection signal="finished" from="Camera2D/CanvasLayer/TextBox" to="." method="_on_text_box_finished"]

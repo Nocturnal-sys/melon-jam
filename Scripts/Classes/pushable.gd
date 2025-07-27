@@ -2,6 +2,7 @@ class_name Pushable
 extends Interactable
 
 @export var denied_lines: Array[String]
+@export var disabled_lines: Array[String]
 
 @onready var up: RayCast2D = $Up
 @onready var down: RayCast2D = $Down
@@ -13,6 +14,8 @@ var movement_tween: Tween
 var direction: Vector2
 var check_direction: Vector2
 var new_position: Vector2
+var disabled: bool = false
+
 
 func interact(interactor):
 	if textColor:
@@ -22,6 +25,12 @@ func interact(interactor):
 			return
 		interactor.text_box_active = true
 		interactor.text_box.dialogueLines = denied_lines
+		interactor.text_box.show_text_box()
+	elif disabled:
+		if !disabled_lines:
+			return
+		interactor.text_box_active = true
+		interactor.text_box.dialogueLines = disabled_lines
 		interactor.text_box.show_text_box()
 	else:
 		if lines:
@@ -34,7 +43,6 @@ func interact(interactor):
 
 
 func _move(direction: Vector2) -> void:
-	print(direction)
 	match direction:
 		Vector2.UP:
 			if up.is_colliding():
@@ -49,6 +57,9 @@ func _move(direction: Vector2) -> void:
 			if right.is_colliding():
 				return
 	new_position = global_position + direction * 16
-	print(new_position)
 	movement_tween = create_tween()
 	movement_tween.tween_property(self,"global_position",new_position,0.2)
+
+
+func disable_push():
+	disabled = true

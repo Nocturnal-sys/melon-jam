@@ -10,7 +10,7 @@ size = Vector2(16, 16)
 collision_layer = 4
 script = ExtResource("1_pw0l1")
 denied_lines = Array[String](["You might be able to move this", "If only you were a little stronger..."])
-textColor = Color(1, 1, 1, 1)
+textColor = Color(1, 0.4, 0, 1)
 metadata/_custom_type_script = "uid://nqhl5606j60s"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5c82ko0347j4"]
+
+[ext_resource type="Texture2D" uid="uid://dcfvj7rgnppcm" path="res://Assets/world-objects/small_crate_unpushable.png" id="1_xcv0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p7wwq"]
+size = Vector2(16, 16)
+
+[node name="SmallCrateStatic" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xcv0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p7wwq")
