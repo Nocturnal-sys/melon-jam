@@ -8,6 +8,7 @@ extends Interactable
 @onready var down: RayCast2D = $Down
 @onready var left: RayCast2D = $Left
 @onready var right: RayCast2D = $Right
+@onready var push_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 var movement_tween: Tween
@@ -56,6 +57,7 @@ func _move(direction: Vector2) -> void:
 		Vector2.RIGHT:
 			if right.is_colliding():
 				return
+	push_sound.play()
 	new_position = global_position + direction * 16
 	movement_tween = create_tween()
 	movement_tween.tween_property(self,"global_position",new_position,0.2)

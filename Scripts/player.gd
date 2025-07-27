@@ -15,6 +15,7 @@ const TILE: Vector2 = Vector2(16,16)
 @onready var right_interact: RayCast2D = $RightInteract
 @onready var interaction_sprite: Sprite2D = $InteractionPrompt/Path2D/PathFollow2D/Sprite2D
 @onready var path: PathFollow2D = $InteractionPrompt/Path2D/PathFollow2D
+@onready var splat_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var interactions: Array[RayCast2D]
 @export var text_box: TextBox
@@ -64,18 +65,22 @@ func _handle_movement():
 		return
 	
 	if Input.is_action_pressed("move_up") and !up.is_colliding():
+		_play_splat_sound()
 		sprite.play("move_up")
 		_move(Vector2(0, -1))
 		prev_step = PrevDirection.UP
 	elif Input.is_action_pressed("move_down") and !down.is_colliding():
+		_play_splat_sound()
 		sprite.play("move_down")
 		_move(Vector2(0, 1))
 		prev_step = PrevDirection.DOWN
 	elif Input.is_action_pressed("move_left") and !left.is_colliding():
+		_play_splat_sound()
 		sprite.play("move_left")
 		_move(Vector2(-1, 0))
 		prev_step = PrevDirection.LEFT
 	elif Input.is_action_pressed("move_right") and !right.is_colliding():
+		_play_splat_sound()
 		sprite.play("move_right")
 		_move(Vector2(1, 0))
 		prev_step = PrevDirection.RIGHT
@@ -127,15 +132,22 @@ func _move(direction: Vector2):
 	sprite_tween.tween_property(sprite,"global_position", global_position, 0.4 / speed_factor).set_trans(Tween.TRANS_SINE)
 
 
+func _play_splat_sound():
+	if splat_player.playing:
+		return
+	splat_player.play()
+
 func change_color(color: Color):
 	sprite.modulate = color
 	light.color = color
 	if color == Color(0.0,0.8,0.6,0.8):
 		speed_factor = 3.5
+		splat_player.pitch_scale *= 1.5
 	elif color == Color(1,1,0.4,0.8):
 		increase_light_power()
 	else:
 		speed_factor = 0.9
+		splat_player.pitch_scale = 0.9
 		decrease_light_power()
 
 

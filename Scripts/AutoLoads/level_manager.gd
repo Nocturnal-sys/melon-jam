@@ -1,25 +1,24 @@
 extends Node
 
 #const PAUSE_MENU = preload("res://Scenes/Levels/pause_menu.tscn")
-#const OPTIONS_MENU = preload("res://Scenes/Levels/options_menu.tscn")
+const OPTIONS_MENU = preload("res://Scenes/options_menu.tscn")
 
 var current_level : Level = null
 #var pause_menu: Level
-#var options_menu: Level
+var options_menu: Level
 
 func _ready() -> void:
 	current_level = get_tree().root.get_child(-1)
 
 
-#func open_options(menu: Level, cam: Camera2D):
-	#options_menu = OPTIONS_MENU.instantiate()
-	#options_menu.camera = cam
-	#get_tree().root.add_child(options_menu)
+func open_options(menu: Level):
+	options_menu = OPTIONS_MENU.instantiate()
+	get_tree().root.add_child(options_menu)
 
 
-#func close_options(menu: Level):
-	#if get_tree().root.get_child(-1) != menu:
-		#get_tree().root.get_child(-1).queue_free()
+func close_options(menu: Level):
+	if get_tree().root.get_child(-1) != menu:
+		get_tree().root.get_child(-1).queue_free()
 
 
 #func pause_game(current: Level, cam: Camera2D):

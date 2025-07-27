@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwuachu6ipy7t"]
+[gd_scene load_steps=5 format=3 uid="uid://bwuachu6ipy7t"]
 
 [ext_resource type="Texture2D" uid="uid://c7c2072d10hrw" path="res://Assets/world-objects/large_pushable_crate.png" id="2_cfivt"]
+[ext_resource type="AudioStream" uid="uid://cpj68ink2behv" path="res://Assets/Sfx/push_alt.mp3" id="2_sjxq2"]
 
 [sub_resource type="GDScript" id="GDScript_a5wfr"]
 script/source = "extends Pushable
@@ -47,3 +48,7 @@ position = Vector2(8, 0)
 target_position = Vector2(8, 0)
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_sjxq2")
+bus = &"Sfx"

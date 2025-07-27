@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://db85suvqckpql"]
+[gd_scene load_steps=5 format=3 uid="uid://db85suvqckpql"]
 
 [ext_resource type="Script" uid="uid://nqhl5606j60s" path="res://Scripts/Classes/pushable.gd" id="1_pw0l1"]
 [ext_resource type="Texture2D" uid="uid://csyc8kauqphih" path="res://Assets/world-objects/vending_machine.png" id="2_28tqu"]
+[ext_resource type="AudioStream" uid="uid://cpj68ink2behv" path="res://Assets/Sfx/push_alt.mp3" id="3_2xu16"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2xu16"]
 size = Vector2(16, 16)
@@ -10,6 +11,7 @@ size = Vector2(16, 16)
 collision_layer = 4
 script = ExtResource("1_pw0l1")
 denied_lines = Array[String](["You might be able to move this", "If only you were a little stronger..."])
+disabled_lines = Array[String](["It's stuck fast on the button"])
 textColor = Color(1, 0.4, 0, 1)
 metadata/_custom_type_script = "uid://nqhl5606j60s"
 
@@ -43,3 +45,7 @@ position = Vector2(8, 0)
 target_position = Vector2(8, 0)
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2xu16")
+bus = &"Sfx"

@@ -1,3 +1,4 @@
+class_name World
 extends Level
 
 @onready var generator_room_light: PointLight2D = $WorldObjects/GeneratorRoom/PointLight2D
@@ -12,10 +13,16 @@ var global_light_tween: Tween
 signal unlock_doors()
 
 
+func _ready():
+	AudioManager.start_main_loop()
+
+
 func update_power():
 	generators += 1
 	if generators == 2:
 		turn_on_lights()
+		AudioManager.stop_main_loop()
+		AudioManager.start_lights_on()
 		unlock_doors.emit()
 
 
@@ -34,3 +41,4 @@ func _on_power_computer_power_up() -> void:
 
 func win_game():
 	LevelSwitcher.advance_level(next)
+	AudioManager.stop_lights_on()

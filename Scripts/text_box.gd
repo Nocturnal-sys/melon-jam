@@ -75,10 +75,12 @@ func add_line(line: String):
 	text.visible_ratio = 0
 	next_line.text = ""
 	_change_state(State.READING)
+	AudioManager.play_computer_sounds()
 	text.text = line
 	typing_tween = create_tween()
 	typing_tween.tween_property(text,"visible_ratio", 1, len(line)*CHAR_READ_RATE)
 	await typing_tween.finished
+	AudioManager.stop_computer_sounds()
 	_change_state(State.LINE_FINISHED)
 	next_line.text = "<"
 	line_index += 1

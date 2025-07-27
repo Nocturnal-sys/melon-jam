@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://bp13412mbsws0"]
+[gd_scene load_steps=20 format=3 uid="uid://bp13412mbsws0"]
 
 [ext_resource type="Script" uid="uid://ma7gx2vi1h85" path="res://Scripts/door.gd" id="1_bn0mn"]
 [ext_resource type="Texture2D" uid="uid://bojnu0u0op2i2" path="res://Assets/FDR_Laboratory_Tiles_Animated.png" id="2_rkbjj"]
+[ext_resource type="AudioStream" uid="uid://d2272eq8281xd" path="res://Assets/Sfx/door_open.mp3" id="3_7fv3d"]
+[ext_resource type="AudioStream" uid="uid://pp5u883bashg" path="res://Assets/Sfx/door_close.mp3" id="4_ik8sl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fv3d"]
 atlas = ExtResource("2_rkbjj")
@@ -260,3 +262,11 @@ shape = SubResource("RectangleShape2D_c1w7k")
 libraries = {
 &"": SubResource("AnimationLibrary_ik8sl")
 }
+
+[node name="Open" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7fv3d")
+bus = &"Sfx"
+
+[node name="Close" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ik8sl")
+bus = &"Sfx"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://b87v34quomb7w"]
+[gd_scene load_steps=18 format=3 uid="uid://b87v34quomb7w"]
 
 [ext_resource type="Script" uid="uid://drxwf2fwrigb7" path="res://Scripts/power_computer.gd" id="1_yxfl5"]
 [ext_resource type="Texture2D" uid="uid://bojnu0u0op2i2" path="res://Assets/FDR_Laboratory_Tiles_Animated.png" id="2_lvik5"]
+[ext_resource type="AudioStream" uid="uid://cvfvgc13im1p3" path="res://Assets/Sfx/droid-hum.mp3" id="3_lvik5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ot6e8"]
 atlas = ExtResource("2_lvik5")
@@ -84,6 +85,15 @@ gradient = SubResource("Gradient_xhvna")
 fill = 1
 fill_from = Vector2(0.482906, 0.478632)
 
+[sub_resource type="Gradient" id="Gradient_lvik5"]
+offsets = PackedFloat32Array(0, 0.765027)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ot6e8"]
+gradient = SubResource("Gradient_lvik5")
+fill = 1
+fill_from = Vector2(0.5, 0.474359)
+
 [node name="PowerComputer" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
@@ -109,3 +119,15 @@ color = Color(0, 0.8, 0.6, 0.8)
 energy = 0.5
 texture = SubResource("GradientTexture2D_pygx0")
 texture_scale = 0.6
+
+[node name="GeneratorHum" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-8, -28)
+stream = ExtResource("3_lvik5")
+volume_db = -1.0
+pitch_scale = 0.7
+bus = &"Sfx"
+
+[node name="GeneratorLight" type="PointLight2D" parent="GeneratorHum"]
+visible = false
+color = Color(1, 0.4, 0, 1)
+texture = SubResource("GradientTexture2D_ot6e8")

@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1umwjoyols3t"]
+
+[ext_resource type="Script" uid="uid://crsw0yg2qvm7p" path="res://Scripts/options_menu.gd" id="1_uj0ok"]
+[ext_resource type="Texture2D" uid="uid://b1rwplqdx33go" path="res://Assets/logo2.png" id="2_l1wg4"]
+[ext_resource type="FontFile" uid="uid://c7i2ga12mhy2n" path="res://Assets/Fonts/CourierPixel.ttf" id="3_inh3s"]
+[ext_resource type="PackedScene" uid="uid://qxbuvt8hma11" path="res://Scenes/volume_slider.tscn" id="3_l1wg4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inh3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6e8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqe32"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfavn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inh3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cvaji"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ndqe"]
+bg_color = Color(0.223103, 0.223103, 0.223103, 1)
+
+[node name="OptionsMenu" type="Node2D"]
+script = ExtResource("1_uj0ok")
+metadata/_custom_type_script = "uid://cn0waws1j2rsh"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2"]
+position = Vector2(160, 90)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_l1wg4")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+offset_left = 45.0
+offset_top = 48.0
+offset_right = 274.0
+offset_bottom = 100.0
+color = Color(0.103744, 0.103744, 0.103744, 1)
+
+[node name="Main" type="Node2D" parent="CanvasLayer2"]
+
+[node name="MainLabel" type="Label" parent="CanvasLayer2/Main"]
+offset_left = 140.0
+offset_top = 52.0
+offset_right = 180.0
+offset_bottom = 75.0
+theme_override_colors/font_color = Color(0, 0.717647, 0, 1)
+theme_override_fonts/font = ExtResource("3_inh3s")
+text = "Main"
+horizontal_alignment = 1
+
+[node name="MainSlider" parent="CanvasLayer2/Main" instance=ExtResource("3_l1wg4")]
+offset_left = 108.0
+offset_top = 61.0
+offset_right = 200.0
+offset_bottom = 77.0
+bus_name = "Master"
+
+[node name="Music" type="Node2D" parent="CanvasLayer2"]
+
+[node name="MusicLabel" type="Label" parent="CanvasLayer2/Music"]
+offset_left = 140.0
+offset_top = 84.0
+offset_right = 180.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(0, 0.717647, 0, 1)
+theme_override_fonts/font = ExtResource("3_inh3s")
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" parent="CanvasLayer2/Music" instance=ExtResource("3_l1wg4")]
+offset_left = 108.0
+offset_top = 93.0
+offset_right = 201.0
+offset_bottom = 109.0
+bus_name = "Music"
+
+[node name="Sfx" type="Node2D" parent="CanvasLayer2"]
+
+[node name="SfxLabel" type="Label" parent="CanvasLayer2/Sfx"]
+offset_left = 140.0
+offset_top = 116.0
+offset_right = 180.0
+offset_bottom = 131.0
+theme_override_colors/font_color = Color(0, 0.717647, 0, 1)
+theme_override_fonts/font = ExtResource("3_inh3s")
+text = "Sfx"
+horizontal_alignment = 1
+
+[node name="SfxSlider" parent="CanvasLayer2/Sfx" instance=ExtResource("3_l1wg4")]
+offset_left = 108.0
+offset_top = 125.0
+offset_right = 200.0
+offset_bottom = 141.0
+bus_name = "Sfx"
+
+[node name="BackButton" type="Button" parent="CanvasLayer2"]
+offset_left = 29.0
+offset_top = 20.0
+offset_right = 68.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_fonts/font = ExtResource("3_inh3s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_inh3s")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m6e8v")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tqe32")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qfavn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_inh3s")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cvaji")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ndqe")
+text = "Back"
+
+[connection signal="drag_ended" from="CanvasLayer2/Sfx/SfxSlider" to="." method="_on_sfx_slider_drag_ended"]
+[connection signal="drag_started" from="CanvasLayer2/Sfx/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
+[connection signal="pressed" from="CanvasLayer2/BackButton" to="." method="_on_back_button_pressed"]

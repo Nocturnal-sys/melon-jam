@@ -28,14 +28,18 @@ func _display_text_box(interactor):
 		interactor.text_box.change_text_color(textColor)
 	if used:
 		if used_lines:
+			AudioManager.computer_interface = true
 			interactor.text_box_active = true
 			interactor.text_box.dialogueLines = used_lines
 			interactor.text_box.show_text_box()
 	elif lines:
+		AudioManager.computer_interface = true
 		interactor.text_box_active = true
 		interactor.text_box.dialogueLines = lines
 		interactor.text_box.show_text_box()
 		used = true
+	await interactor.text_finished
+	AudioManager.computer_interface = false
 
 
 func _on_text_finished(interactable: Interactable):
