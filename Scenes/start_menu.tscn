@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://bunab6h33ps26"]
+
+[ext_resource type="Script" uid="uid://qphtc0kggi3o" path="res://Scripts/start_menu.gd" id="1_m6uer"]
+[ext_resource type="Texture2D" uid="uid://b1rwplqdx33go" path="res://Assets/logo2.png" id="2_jgtwh"]
+[ext_resource type="FontFile" uid="uid://c7i2ga12mhy2n" path="res://Assets/Fonts/CourierPixel.ttf" id="3_m6uer"]
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_m6uer")
+next = "res://Scenes/level1.tscn"
+metadata/_custom_type_script = "uid://cn0waws1j2rsh"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(3.23378e-07, 0.170133, 2.40654e-08, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(160, 90)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_jgtwh")
+
+[node name="PlayButton" type="Button" parent="CanvasLayer"]
+offset_left = 149.0
+offset_top = 100.0
+offset_right = 187.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_m6uer")
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer"]
+offset_left = 139.0
+offset_top = 123.0
+offset_right = 196.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_m6uer")
+text = "Options"
+
+[connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]

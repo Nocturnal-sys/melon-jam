@@ -128,14 +128,25 @@ func _move(direction: Vector2):
 
 
 func change_color(color: Color):
-	print(color)
 	sprite.modulate = color
 	light.color = color
 	if color == Color(0.0,0.8,0.6,0.8):
-		print("speed!")
 		speed_factor = 3.5
+	elif color == Color(1,1,0.4,0.8):
+		increase_light_power()
 	else:
 		speed_factor = 0.9
+		decrease_light_power()
+
+
+func increase_light_power():
+	light.texture_scale = 6
+	light.energy = 2
+
+
+func decrease_light_power():
+	light.texture_scale = 1
+	light.energy = 0.5
 
 
 func get_color():

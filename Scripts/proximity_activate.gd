@@ -1,5 +1,6 @@
 class_name ProximityActivate
 extends ActiveContainer
+
 @onready var area: Area2D = $Area2D
 
 

@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Melon Jam"
-run/main_scene="uid://b03jbbkhrbb31"
+run/main_scene="uid://bunab6h33ps26"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
 PlayerManager="*res://Scripts/AutoLoads/player_variables.gd"
+LevelSwitcher="*res://Scripts/AutoLoads/level_manager.gd"
 
 [display]
 
