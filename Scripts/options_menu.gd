@@ -2,7 +2,6 @@ extends Level
 
 @export var camera: Camera2D
 @export var current: Level
-@onready var content: Node2D = $Content
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

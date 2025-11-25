@@ -35,6 +35,8 @@ transform = Transform2D(4, 0, 0, 4, 0, 0)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = -1
+anchor_left = -0.75
+anchor_top = -0.75
 anchor_right = -0.75
 anchor_bottom = -0.75
 offset_right = 320.0

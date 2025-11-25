@@ -16,7 +16,7 @@ func start_main_menu():
 		fade_in_tween.kill()
 	main_menu.play()
 	fade_in_tween = create_tween()
-	fade_in_tween.tween_property(main_menu, "volume_db", linear_to_db(1),2)
+	fade_in_tween.tween_property(main_menu, "volume_db", linear_to_db(0.5),2)
 
 func stop_main_menu():
 	if fade_out_tween:
