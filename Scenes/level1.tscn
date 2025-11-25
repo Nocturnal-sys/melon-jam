@@ -9933,7 +9933,7 @@ position = Vector2(496, 16)
 used_lines = Array[String](["BREEZE COMPOUND RELEASED", "you can now cycle active compounds using the F or X key"])
 tube_color = Color(1, 1, 1, 0.8)
 lines = Array[String](["BREEZE COMPOUND", "KEEP AWAY FROM LIVING COMPOUND"])
-textColor = Color(0, 1, 0, 1)
+textColor = Color(1, 1, 1, 1)
 
 [node name="InitialTube" parent="WorldObjects/StartRoom" instance=ExtResource("8_jgkgd")]
 position = Vector2(368, 184)
