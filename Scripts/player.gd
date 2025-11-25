@@ -54,8 +54,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		_handle_interaction()
 
-	if Input.is_action_just_pressed("change_color"):
-		PlayerManager.cycle_color()
+	if Input.is_action_just_pressed("change_color_l"):
+		PlayerManager.cycle_color(false)
+	
+	if Input.is_action_just_pressed("change_color_r"):
+		PlayerManager.cycle_color(true)
 
 
 # deal with movement and play animations

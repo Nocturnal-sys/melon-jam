@@ -22,10 +22,16 @@ func bestow_power(color: Color):
 	print(colors)
 
 
-func cycle_color():
-	if color_index < len(colors) - 1:
-		color_index += 1
-		player.change_color(colors[color_index])
+func cycle_color(direction : bool):
+	if direction == true:
+		if color_index == len(colors) - 1:
+			color_index = 0
+		else:
+			color_index += 1
 	else:
-		color_index = 0
-		player.change_color(colors[color_index])
+		if color_index == 0:
+			color_index = len(colors) - 1
+		else:
+			color_index -= 1
+	print(color_index)
+	player.change_color(colors[color_index])
