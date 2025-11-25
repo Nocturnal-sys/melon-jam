@@ -9782,6 +9782,7 @@ size = Vector2(32, 80)
 size = Vector2(48, 24)
 
 [node name="Level1" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_fg80b")
 next = "res://Scenes/end_screen.tscn"
 metadata/_custom_type_script = "uid://cn0waws1j2rsh"
@@ -9930,7 +9931,7 @@ textColor = Color(1, 1, 1, 1)
 
 [node name="AirTube" parent="WorldObjects/StartRoom" instance=ExtResource("8_jgkgd")]
 position = Vector2(496, 16)
-used_lines = Array[String](["BREEZE COMPOUND RELEASED", "you can now cycle active compounds using the F or X key"])
+used_lines = Array[String](["BREEZE COMPOUND RELEASED", "you can now cycle active compounds using the R, F, C or X keys"])
 tube_color = Color(1, 1, 1, 0.8)
 lines = Array[String](["BREEZE COMPOUND", "KEEP AWAY FROM LIVING COMPOUND"])
 textColor = Color(1, 1, 1, 1)
@@ -10002,9 +10003,11 @@ textColor = Color(1, 0.4, 0, 1)
 color = Color(1, 0.4, 0, 0.8)
 
 [node name="Crate" parent="WorldObjects/StorageArea" instance=ExtResource("16_yymuf")]
+z_index = 1
 position = Vector2(1448, 120)
 
 [node name="CrateLarge" parent="WorldObjects/StorageArea" instance=ExtResource("17_esggg")]
+z_index = 1
 position = Vector2(1576, 152)
 
 [node name="HugeDoor" parent="WorldObjects/StorageArea" instance=ExtResource("18_esggg")]
@@ -10024,6 +10027,7 @@ script = ExtResource("19_nolpu")
 position = Vector2(1504, 80)
 
 [node name="HugeCrate" parent="WorldObjects/StorageArea" instance=ExtResource("20_mcj63")]
+z_index = 1
 position = Vector2(1512, 88)
 
 [node name="AndGate" parent="WorldObjects/StorageArea" node_paths=PackedStringArray("triggers", "target") instance=ExtResource("23_icduq")]
@@ -10031,6 +10035,7 @@ triggers = [NodePath("../../../Button2"), NodePath("../../../Button3")]
 target = NodePath("../DoorL")
 
 [node name="VendingMachine" parent="WorldObjects/StorageArea" instance=ExtResource("24_pmaet")]
+z_index = 1
 position = Vector2(1704, 232)
 denied_lines = Array[String](["This vending machine dispenses strength compound", "It looks a little loose"])
 
@@ -10317,3 +10322,5 @@ shape = SubResource("RectangleShape2D_4otl7")
 [editable path="WorldObjects/StorageArea/StrengthTube"]
 [editable path="WorldObjects/StorageArea/HugeDoor"]
 [editable path="WorldObjects/EnergyRoom/EnergyTube"]
+[editable path="WorldObjects/ExitCorridor/ProximityActivate/HugeDoor"]
+[editable path="WorldObjects/ExitCorridor/ProximityActivate2/HugeDoor2"]

@@ -27,7 +27,6 @@ func update_power():
 
 
 func turn_on_lights():
-	print("turn on the lights!!")
 	point_light_tween = create_tween()
 	point_light_tween.tween_property(generator_room_light,"energy",0,0.8)
 	await point_light_tween.finished

@@ -54,6 +54,8 @@ offset_right = -1184.0
 offset_bottom = -712.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 0
+focus_behavior_recursive = 1
 theme_override_icons/grabber = ExtResource("1_pm22v")
 theme_override_icons/grabber_highlight = ExtResource("1_pm22v")
 theme_override_icons/grabber_disabled = ExtResource("1_pm22v")
@@ -69,16 +71,19 @@ script = ExtResource("1_0rqdt")
 layout_mode = 0
 offset_left = 92.0
 offset_right = 116.0
-offset_bottom = 15.0
+offset_bottom = 16.0
 theme_override_colors/font_color = Color(0, 0.522189, 0, 1)
 theme_override_fonts/font = ExtResource("2_xqtbv")
 text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Mute" type="CheckButton" parent="."]
-modulate = Color(0, 0.67451, 0, 1)
+modulate = Color(0, 0.6627451, 0, 1)
 layout_mode = 0
 offset_left = -16.0
 offset_bottom = 16.0
+focus_behavior_recursive = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_tumjh")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_at6kh")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_4m2hm")
@@ -94,5 +99,9 @@ theme_override_icons/checked = ExtResource("3_t3chh")
 theme_override_icons/unchecked = ExtResource("4_pm22v")
 button_pressed = true
 
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="value_changed" from="." to="." method="_on_value_changed"]
+[connection signal="focus_entered" from="Mute" to="." method="_on_mute_focus_entered"]
+[connection signal="focus_exited" from="Mute" to="." method="_on_mute_focus_exited"]
+[connection signal="mouse_entered" from="Mute" to="." method="_on_mute_mouse_entered"]
 [connection signal="toggled" from="Mute" to="." method="_on_mute_toggled"]

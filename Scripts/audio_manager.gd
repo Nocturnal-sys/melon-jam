@@ -4,6 +4,7 @@ extends Node2D
 @onready var main_loop: AudioStreamPlayer = $MainLoop
 @onready var win_music: AudioStreamPlayer = $WinMusic
 @onready var lights_on: AudioStreamPlayer = $LightsOn
+@onready var ui_select: AudioStreamPlayer = $UiSelect
 
 var computer_interface = false
 var fade_out_tween: Tween
@@ -88,3 +89,9 @@ func play_computer_sounds():
 
 func stop_computer_sounds():
 	computer_sounds.stop()
+
+
+func play_select():
+	if ui_select.playing:
+		return
+	ui_select.play()

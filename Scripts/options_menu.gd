@@ -2,20 +2,20 @@ extends Level
 
 @export var camera: Camera2D
 @export var current: Level
+@onready var mute_main: CheckButton = $Content/Main/MainSlider/Mute
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	reset_focus()
+
+
+func reset_focus() -> void:
+	mute_main.grab_focus()
 
 
 func _on_back_button_pressed() -> void:
-	LevelSwitcher.close_options(current)
+	LevelSwitcher.close_options()
 
 
-func _on_sfx_slider_drag_started() -> void:
-	AudioManager.computer_interface = true
-	AudioManager.play_computer_sounds()
-
-
-func _on_sfx_slider_drag_ended(value_changed: bool) -> void:
-	AudioManager.computer_interface = false
-	AudioManager.stop_computer_sounds()
+func _on_back_button_focus_entered() -> void:
+	AudioManager.play_select()

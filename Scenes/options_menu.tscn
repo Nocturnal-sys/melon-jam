@@ -20,6 +20,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inh3s"]
 
 [node name="OptionsMenu" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_uj0ok")
 metadata/_custom_type_script = "uid://cn0waws1j2rsh"
 
@@ -58,6 +59,12 @@ offset_right = 200.0
 offset_bottom = 77.0
 bus_name = "Master"
 
+[node name="Mute" parent="Content/Main/MainSlider" index="1"]
+focus_neighbor_top = NodePath("../../../BackButton")
+focus_neighbor_bottom = NodePath("../../../Music/MusicSlider/Mute")
+focus_next = NodePath("../../../Music/MusicSlider/Mute")
+focus_previous = NodePath("../../../BackButton")
+
 [node name="Music" type="Node2D" parent="Content"]
 
 [node name="MusicLabel" type="Label" parent="Content/Music"]
@@ -76,6 +83,12 @@ offset_top = 93.0
 offset_right = 200.0
 offset_bottom = 109.0
 bus_name = "Music"
+
+[node name="Mute" parent="Content/Music/MusicSlider" index="1"]
+focus_neighbor_top = NodePath("../../../Main/MainSlider/Mute")
+focus_neighbor_bottom = NodePath("../../../Sfx/SfxSlider/Mute")
+focus_next = NodePath("../../../Sfx/SfxSlider/Mute")
+focus_previous = NodePath("../../../Main/MainSlider/Mute")
 
 [node name="Sfx" type="Node2D" parent="Content"]
 
@@ -96,12 +109,24 @@ offset_right = 200.0
 offset_bottom = 141.0
 bus_name = "Sfx"
 
+[node name="Mute" parent="Content/Sfx/SfxSlider" index="1"]
+focus_neighbor_top = NodePath("../../../Music/MusicSlider/Mute")
+focus_neighbor_bottom = NodePath("../../../BackButton")
+focus_next = NodePath("../../../BackButton")
+focus_previous = NodePath("../../../Music/MusicSlider/Mute")
+
 [node name="BackButton" type="Button" parent="Content"]
 offset_left = 41.0
 offset_top = 46.0
 offset_right = 80.0
 offset_bottom = 69.0
+focus_neighbor_top = NodePath("../Sfx/SfxSlider/Mute")
+focus_neighbor_bottom = NodePath("../Main/MainSlider/Mute")
 theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_inh3s")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_syw6n")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cvaji")
@@ -112,6 +137,9 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_m6e8v")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_inh3s")
 text = "<<Back"
 
-[connection signal="drag_ended" from="Content/Sfx/SfxSlider" to="." method="_on_sfx_slider_drag_ended"]
-[connection signal="drag_started" from="Content/Sfx/SfxSlider" to="." method="_on_sfx_slider_drag_started"]
+[connection signal="focus_entered" from="Content/BackButton" to="." method="_on_back_button_focus_entered"]
 [connection signal="pressed" from="Content/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Content/Main/MainSlider"]
+[editable path="Content/Music/MusicSlider"]
+[editable path="Content/Sfx/SfxSlider"]

@@ -6,19 +6,34 @@ const OPTIONS_MENU = preload("res://Scenes/options_menu.tscn")
 var current_level : Level = null
 #var pause_menu: Level
 var options_menu: Level
+var options_open: bool = false
+
 
 func _ready() -> void:
 	current_level = get_tree().root.get_child(-1)
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
-func open_options(menu: Level):
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		if options_open:
+			close_options()
+		else:
+			open_options()
+
+func open_options():
 	options_menu = OPTIONS_MENU.instantiate()
-	get_tree().root.add_child(options_menu)
+	get_tree().root.call_deferred("add_child",options_menu)
+	get_tree().paused = true
+	options_open = true
 
 
-func close_options(menu: Level):
-	if get_tree().root.get_child(-1) != menu:
+func close_options():
+	if get_tree().root.get_child(-1) != current_level:
 		get_tree().root.get_child(-1).queue_free()
+	current_level.reset_focus()
+	get_tree().paused = false
+	options_open = false
 
 
 #func pause_game(current: Level, cam: Camera2D):
@@ -39,6 +54,7 @@ func close_options(menu: Level):
 #called from level to switch to next level
 func advance_level(next : String):
 	_deferred_goto_level.call_deferred(next)
+	current_level = get_tree().root.get_child(-1)
 
 
 #func reset_level():

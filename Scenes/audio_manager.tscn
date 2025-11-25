@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxy8q6oqxncvx"]
+[gd_scene load_steps=8 format=3 uid="uid://bxy8q6oqxncvx"]
 
 [ext_resource type="Script" uid="uid://nrayoopf82ir" path="res://Scripts/audio_manager.gd" id="1_4tj6f"]
 [ext_resource type="AudioStream" uid="uid://ritefndjqwxj" path="res://Assets/Music/The-Creeping-Blob_Looping.mp3" id="2_qixve"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://civn07b4fhd4t" path="res://Assets/Music/More-Introspective-Machines_Looping.mp3" id="4_qixve"]
 [ext_resource type="AudioStream" uid="uid://bdlcq0byhfb8i" path="res://Assets/Music/The-Winner.mp3" id="5_0hehx"]
 [ext_resource type="AudioStream" uid="uid://dqpise41sb6sn" path="res://Assets/Music/A-Long-Journey-for-a-Little-Bot.mp3" id="6_mjqhu"]
+[ext_resource type="AudioStream" uid="uid://cyairao4bmdr" path="res://Assets/Sfx/toggle_002.ogg" id="7_5kf6k"]
 
 [node name="AudioManager" type="Node2D"]
 process_mode = 3
@@ -30,3 +31,9 @@ bus = &"Music"
 
 [node name="LightsOn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_mjqhu")
+bus = &"Music"
+
+[node name="UiSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_5kf6k")
+volume_db = -18.602
+bus = &"Sfx"

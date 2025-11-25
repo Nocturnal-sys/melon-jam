@@ -25,6 +25,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lfskg"]
 
 [node name="StartMenu" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_m6uer")
 next = "res://Scenes/level1.tscn"
 metadata/_custom_type_script = "uid://cn0waws1j2rsh"
@@ -54,7 +55,15 @@ offset_left = 137.0
 offset_top = 96.0
 offset_right = 175.0
 offset_bottom = 119.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+focus_neighbor_top = NodePath("../OptionsButton")
+focus_neighbor_bottom = NodePath("../OptionsButton")
+focus_next = NodePath("../OptionsButton")
+focus_previous = NodePath("../OptionsButton")
+theme_override_colors/font_color = Color(0, 0.6627451, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_m6uer")
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ru7em")
@@ -72,7 +81,16 @@ offset_left = 125.0
 offset_top = 120.0
 offset_right = 182.0
 offset_bottom = 143.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
+focus_neighbor_top = NodePath("../PlayButton")
+focus_neighbor_bottom = NodePath("../PlayButton")
+focus_next = NodePath("../PlayButton")
+focus_previous = NodePath("../PlayButton")
+focus_mode = 1
+theme_override_colors/font_color = Color(0, 0.6627451, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_m6uer")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_77ila")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_a43kq")
@@ -82,5 +100,11 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_lfskg")
 text = "Options"
 metadata/_edit_use_anchors_ = true
 
+[connection signal="focus_entered" from="CanvasLayer/PlayButton" to="." method="_on_play_button_focus_entered"]
+[connection signal="focus_exited" from="CanvasLayer/PlayButton" to="." method="_on_play_button_focus_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/PlayButton" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="focus_entered" from="CanvasLayer/OptionsButton" to="." method="_on_options_button_focus_entered"]
+[connection signal="focus_exited" from="CanvasLayer/OptionsButton" to="." method="_on_options_button_focus_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/OptionsButton" to="." method="_on_options_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/OptionsButton" to="." method="_on_options_button_pressed"]

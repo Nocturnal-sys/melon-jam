@@ -21,7 +21,7 @@ const TILE: Vector2 = Vector2(16,16)
 @export var text_box: TextBox
 @export var text_box_active: bool = false
 
-var speed_factor: float = 0.9
+var speed_factor: float = 1
 
 enum PrevDirection{
 	DOWN,
@@ -33,6 +33,8 @@ var sprite_tween: Tween
 var prev_step: PrevDirection
 var tween_running: bool = false
 
+var menu_open: bool = false
+
 var interactable: Interactable
 
 signal text_finished()
@@ -43,6 +45,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
 	_display_interaction()
 	if sprite_tween and sprite_tween.is_running():
 		tween_running = true
@@ -64,7 +67,7 @@ func _physics_process(delta: float) -> void:
 # deal with movement and play animations
 func _handle_movement():
 	
-	if text_box_active:
+	if text_box_active or menu_open:
 		return
 	
 	if Input.is_action_pressed("move_up") and !up.is_colliding():
