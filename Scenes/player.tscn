@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://d0gyrtrtkg6a3"]
+[gd_scene load_steps=49 format=3 uid="uid://d0gyrtrtkg6a3"]
 
 [ext_resource type="Script" uid="uid://cvjje38t3fxkg" path="res://Scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c8gag5bdruwaq" path="res://Assets/character/Sprite Sheet_greyscale.png" id="3_6t5aa"]
@@ -102,6 +102,10 @@ region = Rect2(480, 32, 16, 16)
 atlas = ExtResource("3_6t5aa")
 region = Rect2(496, 32, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbwqj"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(496, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vfarp"]
 atlas = ExtResource("3_6t5aa")
 region = Rect2(512, 32, 16, 16)
@@ -119,6 +123,10 @@ atlas = ExtResource("3_6t5aa")
 region = Rect2(480, 192, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xuaoq"]
+atlas = ExtResource("3_6t5aa")
+region = Rect2(496, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwi16"]
 atlas = ExtResource("3_6t5aa")
 region = Rect2(496, 192, 16, 16)
 
@@ -238,7 +246,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_down",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -251,6 +259,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_0gysh")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_sbwqj")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vfarp")
 }, {
 "duration": 1.0,
@@ -258,7 +269,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_left",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -271,6 +282,9 @@ animations = [{
 "texture": SubResource("AtlasTexture_xuaoq")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xwi16")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_wohnl")
 }, {
 "duration": 1.0,
@@ -278,7 +292,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_right",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -298,7 +312,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"move_up",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_6t5aa"]
@@ -323,18 +337,37 @@ point_count = 2
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("interactions", "text_box")]
 script = ExtResource("1_onrkg")
 interactions = [NodePath("UpInteract"), NodePath("DownInteract"), NodePath("LeftInteract"), NodePath("RightInteract")]
-text_box = NodePath("Camera2D/CanvasLayer/TextBox")
+text_box = NodePath("AnimatedSprite2D/Camera2D/CanvasLayer/TextBox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0, 1, 0, 0.8)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
-animation = &"idle_down"
+animation = &"move_right"
 autoplay = "idle_down"
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
 energy = 0.5
 range_item_cull_mask = 31
 texture = SubResource("GradientTexture2D_vgqql")
+
+[node name="Camera2D" type="Camera2D" parent="AnimatedSprite2D"]
+light_mask = 0
+zoom = Vector2(4, 4)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="AnimatedSprite2D/Camera2D"]
+offset = Vector2(640, 400)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 640, 400)
+
+[node name="TextBox" parent="AnimatedSprite2D/Camera2D/CanvasLayer" instance=ExtResource("4_vgqql")]
+z_index = 4096
+z_as_relative = true
+offset_left = -104.0
+offset_top = 24.0
+offset_right = 104.0
+offset_bottom = 72.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4flbx")
@@ -409,27 +442,6 @@ visible = false
 position = Vector2(24, 0)
 texture = ExtResource("3_vgqql")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-light_mask = 0
-position = Vector2(0, 1.90735e-06)
-scale = Vector2(839.306, -167.479)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-position_smoothing_speed = 2.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-offset = Vector2(640, 400)
-scale = Vector2(4, 4)
-transform = Transform2D(4, 0, 0, 4, 640, 400)
-
-[node name="TextBox" parent="Camera2D/CanvasLayer" instance=ExtResource("4_vgqql")]
-z_index = 4096
-z_as_relative = true
-offset_left = -104.0
-offset_top = 24.0
-offset_right = 104.0
-offset_bottom = 72.0
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_fkybt")
 volume_db = -10.0
@@ -437,4 +449,4 @@ pitch_scale = 0.9
 bus = &"Sfx"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="finished" from="Camera2D/CanvasLayer/TextBox" to="." method="_on_text_box_finished"]
+[connection signal="finished" from="AnimatedSprite2D/Camera2D/CanvasLayer/TextBox" to="." method="_on_text_box_finished"]

@@ -129,7 +129,8 @@ func _move(direction: Vector2):
 		sprite_tween.kill()
 	sprite_tween = create_tween()
 	sprite_tween.set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
-	sprite_tween.tween_property(sprite,"global_position", global_position, 0.4 / speed_factor).set_trans(Tween.TRANS_SINE)
+	sprite_tween.tween_property(sprite,"global_position", global_position, 0.5 / speed_factor).set_trans(Tween.TRANS_SINE)
+	await get_tree().create_timer(0.15 / speed_factor).timeout
 
 
 func _play_splat_sound():
@@ -143,11 +144,16 @@ func change_color(color: Color):
 	if color == Color(0.0,0.8,0.6,0.8):
 		speed_factor = 3.5
 		splat_player.pitch_scale *= 1.5
+		sprite.set_speed_scale(speed_factor)
 	elif color == Color(1,1,0.4,0.8):
 		increase_light_power()
-	else:
-		speed_factor = 0.9
+		speed_factor = 1
 		splat_player.pitch_scale = 0.9
+		sprite.set_speed_scale(speed_factor)
+	else:
+		speed_factor = 1
+		splat_player.pitch_scale = 0.9
+		sprite.set_speed_scale(speed_factor)
 		decrease_light_power()
 
 
@@ -171,6 +177,7 @@ func _on_text_box_finished() -> void:
 
 
 func kill(pos: Vector2):
-	if tween_running:
-		await sprite_tween.finished
 	global_position = pos
+	if tween_running:
+		sprite_tween.kill()
+	sprite.global_position = pos

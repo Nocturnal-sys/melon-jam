@@ -1,20 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://bunab6h33ps26"]
+[gd_scene load_steps=14 format=3 uid="uid://bunab6h33ps26"]
 
 [ext_resource type="Script" uid="uid://qphtc0kggi3o" path="res://Scripts/start_menu.gd" id="1_m6uer"]
 [ext_resource type="Texture2D" uid="uid://b1rwplqdx33go" path="res://Assets/logo2.png" id="2_jgtwh"]
 [ext_resource type="FontFile" uid="uid://c7i2ga12mhy2n" path="res://Assets/Fonts/CourierPixel.ttf" id="3_m6uer"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2i62"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_626he"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ru7em"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6uer"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lfskg"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00l4x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_626he"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2i62"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_77ila"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a43kq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vuks"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8u0lp"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a43kq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lfskg"]
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource("1_m6uer")
@@ -26,38 +34,51 @@ scale = Vector2(4, 4)
 transform = Transform2D(4, 0, 0, 4, 0, 0)
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = -0.75
+anchor_bottom = -0.75
 offset_right = 320.0
 offset_bottom = 180.0
 color = Color(3.23378e-07, 0.170133, 2.40654e-08, 0.8)
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 position = Vector2(160, 90)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.25, 0.24999999)
 texture = ExtResource("2_jgtwh")
 
 [node name="PlayButton" type="Button" parent="CanvasLayer"]
-offset_left = 141.0
-offset_top = 102.0
-offset_right = 179.0
-offset_bottom = 125.0
+offset_left = 137.0
+offset_top = 96.0
+offset_right = 175.0
+offset_bottom = 119.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_m6uer")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_i2i62")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_626he")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ru7em")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_m6uer")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_00l4x")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_626he")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i2i62")
 text = "Play"
+metadata/_edit_use_anchors_ = true
 
 [node name="OptionsButton" type="Button" parent="CanvasLayer"]
-offset_left = 131.5
-offset_top = 124.0
-offset_right = 188.5
-offset_bottom = 147.0
+anchors_preset = -1
+anchor_right = 0.0015625
+offset_left = 125.0
+offset_top = 120.0
+offset_right = 182.0
+offset_bottom = 143.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_m6uer")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lfskg")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8u0lp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_77ila")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_a43kq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7vuks")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8u0lp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lfskg")
 text = "Options"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="CanvasLayer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/OptionsButton" to="." method="_on_options_button_pressed"]

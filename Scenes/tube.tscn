@@ -14,7 +14,7 @@ fill = 1
 fill_from = Vector2(0.509174, 0.486239)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkjtj"]
-size = Vector2(24, 20)
+size = Vector2(24, 12)
 
 [node name="Tube" type="Area2D"]
 collision_layer = 4
@@ -24,6 +24,7 @@ metadata/_custom_type_script = "uid://c4ctbdfsjgwoc"
 
 [node name="Top" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.784314)
+z_index = 7
 texture = ExtResource("2_adwee")
 
 [node name="Light" type="PointLight2D" parent="Top"]
@@ -33,5 +34,5 @@ texture = SubResource("GradientTexture2D_slq13")
 texture = ExtResource("3_m0uvw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_bkjtj")

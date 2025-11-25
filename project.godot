@@ -10,20 +10,27 @@ config_version=5
 
 [application]
 
-config/name="Melon Jam"
+config/name="Night of the Living Compound"
 run/main_scene="uid://bunab6h33ps26"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
 
 PlayerManager="*res://Scripts/AutoLoads/player_variables.gd"
 LevelSwitcher="*res://Scripts/AutoLoads/level_manager.gd"
 AudioManager="*res://Scenes/audio_manager.tscn"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg")
 
 [input]
 

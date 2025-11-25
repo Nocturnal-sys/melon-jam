@@ -28,7 +28,7 @@ func _ready() -> void:
 	hide_text_box()
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		match current_state:
 			State.READING:
@@ -39,7 +39,6 @@ func _process(delta: float) -> void:
 			State.FINISHED:
 				hide_text_box()
 				finished.emit()
-	pass
 
 
 # if there are lines to display,shows the text box and displays them
@@ -81,11 +80,12 @@ func add_line(line: String):
 	typing_tween.tween_property(text,"visible_ratio", 1, len(line)*CHAR_READ_RATE)
 	await typing_tween.finished
 	AudioManager.stop_computer_sounds()
-	_change_state(State.LINE_FINISHED)
 	next_line.text = "<"
 	line_index += 1
 	if line_index == len(dialogueLines):
 		_change_state(State.FINISHED)
+	else:
+		_change_state(State.LINE_FINISHED)
 
 
 # changes displayed text color based on a provided color parameter

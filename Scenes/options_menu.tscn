@@ -5,20 +5,20 @@
 [ext_resource type="FontFile" uid="uid://c7i2ga12mhy2n" path="res://Assets/Fonts/CourierPixel.ttf" id="3_inh3s"]
 [ext_resource type="PackedScene" uid="uid://qxbuvt8hma11" path="res://Scenes/volume_slider.tscn" id="3_l1wg4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inh3s"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6e8v"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqe32"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfavn"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inh3s"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ndqe"]
+bg_color = Color(0.223103, 0.223103, 0.223103, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cvaji"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ndqe"]
-bg_color = Color(0.223103, 0.223103, 0.223103, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inh3s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qfavn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqe32"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m6e8v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_inh3s"]
 
 [node name="OptionsMenu" type="Node2D"]
 script = ExtResource("1_uj0ok")
@@ -74,7 +74,7 @@ horizontal_alignment = 1
 [node name="MusicSlider" parent="CanvasLayer2/Music" instance=ExtResource("3_l1wg4")]
 offset_left = 108.0
 offset_top = 93.0
-offset_right = 201.0
+offset_right = 200.0
 offset_bottom = 109.0
 bus_name = "Music"
 
@@ -104,13 +104,13 @@ offset_right = 68.0
 offset_bottom = 43.0
 theme_override_colors/font_color = Color(0, 0.662745, 0, 1)
 theme_override_fonts/font = ExtResource("3_inh3s")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_inh3s")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_m6e8v")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tqe32")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qfavn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_inh3s")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_cvaji")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1ndqe")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cvaji")
+theme_override_styles/hover = SubResource("StyleBoxFlat_inh3s")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_qfavn")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tqe32")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_m6e8v")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_inh3s")
 text = "Back"
 
 [connection signal="drag_ended" from="CanvasLayer2/Sfx/SfxSlider" to="." method="_on_sfx_slider_drag_ended"]

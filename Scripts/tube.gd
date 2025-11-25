@@ -12,7 +12,6 @@ var power_bestowed = false
 var player: Player
 
 func _ready() -> void:
-	player = PlayerManager.get_player()
 	if used:
 		light.hide()
 	top.modulate = tube_color
@@ -50,6 +49,7 @@ func _on_text_finished(interactable: Interactable):
 
 
 func _bestow_power():
+	player = PlayerManager.get_player()
 	var light_tween: Tween = create_tween()
 	light_tween.tween_property(light,"global_position",player.global_position,1)
 	await light_tween.finished
